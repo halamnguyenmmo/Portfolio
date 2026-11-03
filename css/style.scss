@@ -1,0 +1,260 @@
+// 1. Khai báo biến
+$primary: #315EFB;
+$text: #172033;
+$muted: #64748B;
+$white: #FFFFFF;
+$background: #F5F7FB;
+$border: #E2E8F0;
+
+// 2. Box Model toàn cục
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: $text;
+    background: $background;
+    line-height: 1.6;
+}
+
+// 3. Mixin tái sử dụng
+@mixin container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// 4. Dùng mixin
+.navbar,
+.section,
+.hero,
+.site-footer {
+    @include container;
+}
+
+// Header và Navbar
+.site-header {
+    background: $white;
+    border-bottom: 1px solid $border;
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    .logo {
+        color: $primary;
+        font-weight: 700;
+        font-size: 22px;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+
+        a {
+            color: $text;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+}
+
+// Hero
+.hero {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    .hero-label {
+        color: $primary;
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    p {
+        color: $muted;
+    }
+}
+
+// Các section
+.section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    h2 {
+        margin-bottom: 24px;
+    }
+}
+
+// Kỹ năng
+.skill-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.skill-card {
+    background: $white;
+    padding: 20px;
+    border: 1px solid $border;
+    border-radius: 12px;
+}
+
+// Dự án
+.project-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.project-card {
+    background: $white;
+    padding: 20px;
+    border: 1px solid $border;
+    border-radius: 12px;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    p {
+        color: $muted;
+    }
+}
+
+// Form
+#contact-form {
+    display: grid;
+    gap: 16px;
+
+    .form-group {
+        display: grid;
+        gap: 6px;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid $border;
+        border-radius: 8px;
+        font: inherit;
+    }
+}
+
+// Button
+.btn-primary {
+    display: inline-block;
+    padding: 12px 20px;
+    background: $primary;
+    color: $white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        background: #1B4ED8;
+    }
+}
+
+// Bảng
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: $white;
+
+    th,
+    td {
+        padding: 12px;
+        border: 1px solid $border;
+        text-align: left;
+    }
+
+    th {
+        background: $primary;
+        color: $white;
+    }
+}
+
+.site-footer {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    color: $muted;
+}
+
+// Dark mode
+body.dark {
+    background: #101827;
+    color: $white;
+
+    .site-header,
+    .skill-card,
+    .project-card,
+    table {
+        background: #1E293B;
+        color: $white;
+    }
+
+    .nav-links a,
+    .project-card p {
+        color: #CBD5E1;
+    }
+
+    input,
+    textarea,
+    select {
+        background: #1E293B;
+        color: $white;
+        border-color: #475569;
+    }
+}
+
+// Breakpoint 1: Tablet
+@media (min-width: 600px) {
+    .site-header {
+        .navbar {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .skill-list,
+    .project-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+// Breakpoint 2: Desktop
+@media (min-width: 992px) {
+    .skill-list,
+    .project-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+}
